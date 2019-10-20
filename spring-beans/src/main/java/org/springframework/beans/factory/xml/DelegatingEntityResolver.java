@@ -28,7 +28,7 @@ import org.springframework.util.Assert;
 /**
  * {@link EntityResolver} implementation that delegates to a {@link BeansDtdResolver}
  * and a {@link PluggableSchemaResolver} for DTDs and XML schemas, respectively.
- *
+ * entityResolver的实现类 由程序实现寻找DTD，或者xsd的方式
  * @author Rob Harrop
  * @author Juergen Hoeller
  * @author Rick Evans
@@ -77,12 +77,21 @@ public class DelegatingEntityResolver implements EntityResolver {
 	}
 
 
+	/**
+	 * 解析的主要方法
+	 * @param publicId
+	 * @param systemId
+	 * @return
+	 * @throws SAXException
+	 * @throws IOException
+	 */
 	@Override
 	@Nullable
 	public InputSource resolveEntity(@Nullable String publicId, @Nullable String systemId)
 			throws SAXException, IOException {
 
 		if (systemId != null) {
+//			DTD解析从这里面进去
 			if (systemId.endsWith(DTD_SUFFIX)) {
 				return this.dtdResolver.resolveEntity(publicId, systemId);
 			}

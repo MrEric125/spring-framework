@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * 这个类是对请求映射的一个抽象，它包含了请求路径，
+ * 请求方法，请求头等信息。其实可以看做是@RequestMapping的一个对应类。
  */
 
 package org.springframework.web.reactive.result.method;

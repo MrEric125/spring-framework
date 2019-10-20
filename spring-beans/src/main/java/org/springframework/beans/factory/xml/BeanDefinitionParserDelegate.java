@@ -398,6 +398,7 @@ public class BeanDefinitionParserDelegate {
 	/**
 	 * Parses the supplied {@code <bean>} element. May return {@code null}
 	 * if there were errors during parse. Errors are reported to the
+	 * 进行BeanDefinition的解析
 	 * {@link org.springframework.beans.factory.parsing.ProblemReporter}.
 	 */
 	@Nullable
@@ -412,7 +413,9 @@ public class BeanDefinitionParserDelegate {
 	 */
 	@Nullable
 	public BeanDefinitionHolder parseBeanDefinitionElement(Element ele, @Nullable BeanDefinition containingBean) {
+//		解析元素的id
 		String id = ele.getAttribute(ID_ATTRIBUTE);
+//		解析name属性
 		String nameAttr = ele.getAttribute(NAME_ATTRIBUTE);
 
 		List<String> aliases = new ArrayList<>();
@@ -503,26 +506,37 @@ public class BeanDefinitionParserDelegate {
 		this.parseState.push(new BeanEntry(beanName));
 
 		String className = null;
+//		解析class属性
 		if (ele.hasAttribute(CLASS_ATTRIBUTE)) {
 			className = ele.getAttribute(CLASS_ATTRIBUTE).trim();
 		}
 		String parent = null;
+//		解析parent属性
 		if (ele.hasAttribute(PARENT_ATTRIBUTE)) {
 			parent = ele.getAttribute(PARENT_ATTRIBUTE);
 		}
 
 		try {
+//			创建用于承载属性的AbstractBeanDefinition类型的GenericBeanDefinition
 			AbstractBeanDefinition bd = createBeanDefinition(className, parent);
 
+//			硬编码的方式解析默认的Bean的各种属性
 			parseBeanDefinitionAttributes(ele, beanName, containingBean, bd);
+//			提取description
 			bd.setDescription(DomUtils.getChildElementValueByTagName(ele, DESCRIPTION_ELEMENT));
-
+//			解析元数据
 			parseMetaElements(ele, bd);
+//			解析lookup-method
 			parseLookupOverrideSubElements(ele, bd.getMethodOverrides());
+//			解析replaced-method
 			parseReplacedMethodSubElements(ele, bd.getMethodOverrides());
 
+//			解析构造函数参数
 			parseConstructorArgElements(ele, bd);
+//			解析属性
 			parsePropertyElements(ele, bd);
+//			解析Qualifier,到这个地方spring基本上完成了从XML到GenericBeanDefinition的转换，
+// 			也就是说xml中所有的配置都能在GenericBeanDefinition的实例中找到对应的配置
 			parseQualifierElements(ele, bd);
 
 			bd.setResource(this.readerContext.getResource());
@@ -548,6 +562,8 @@ public class BeanDefinitionParserDelegate {
 
 	/**
 	 * Apply the attributes of the given bean element to the given bean * definition.
+	 *
+	 * 将给定的attributes 解析成给定的BeanDefinition,
 	 * @param ele bean declaration element
 	 * @param beanName bean name
 	 * @param containingBean containing bean definition
@@ -556,6 +572,7 @@ public class BeanDefinitionParserDelegate {
 	public AbstractBeanDefinition parseBeanDefinitionAttributes(Element ele, String beanName,
 			@Nullable BeanDefinition containingBean, AbstractBeanDefinition bd) {
 
+		//1.x中设置的
 		if (ele.hasAttribute(SINGLETON_ATTRIBUTE)) {
 			error("Old 1.x 'singleton' attribute in use - upgrade to 'scope' declaration", ele);
 		}
@@ -631,6 +648,7 @@ public class BeanDefinitionParserDelegate {
 
 	/**
 	 * Create a bean definition for the given class name and parent name.
+	 * BeanDefinition使用与承载属性，这里是通过给定的parentName和name来创建的
 	 * @param className the name of the bean class
 	 * @param parentName the name of the bean's parent bean
 	 * @return the newly created bean definition
@@ -767,6 +785,10 @@ public class BeanDefinitionParserDelegate {
 
 	/**
 	 * Parse a constructor-arg element.
+	 * 解析constructor-arg的几个步骤
+	 * 1.解析constructor-arg的子元素
+	 * 2.使用ConstructorArgumentValues.ValueHolder来封装解析出来的元素
+	 *..........
 	 */
 	public void parseConstructorArgElement(Element ele, BeanDefinition bd) {
 		String indexAttr = ele.getAttribute(INDEX_ATTRIBUTE);
@@ -1370,6 +1392,15 @@ public class BeanDefinitionParserDelegate {
 		return decorateBeanDefinitionIfRequired(ele, definitionHolder, null);
 	}
 
+	/**
+	 *在这里对于默认的标签的处理都全部略过，毕竟在之前已经全都处理了，
+	 * 这里只对自定义的标签，或者bean的自定义属性感兴趣，然后在方法中实现了寻找自定义标签，
+	 * 并根据自定义标签寻找命名空间处理器，然后进一步处理
+	 * @param ele
+	 * @param definitionHolder
+	 * @param containingBd 这第三个参数是父类Bean,这样子类没有设置scope的时候局可以直接使用父类的scope
+	 * @return
+	 */
 	public BeanDefinitionHolder decorateBeanDefinitionIfRequired(
 			Element ele, BeanDefinitionHolder definitionHolder, @Nullable BeanDefinition containingBd) {
 
@@ -1377,12 +1408,14 @@ public class BeanDefinitionParserDelegate {
 
 		// Decorate based on custom attributes first.
 		NamedNodeMap attributes = ele.getAttributes();
+//		遍历所有的属性，看看是否有适用于修饰的属性
 		for (int i = 0; i < attributes.getLength(); i++) {
 			Node node = attributes.item(i);
 			finalDefinition = decorateIfRequired(node, finalDefinition, containingBd);
 		}
 
 		// Decorate based on custom nested elements.
+//		遍历所有的子元素，看看是否有适合修饰的子元素
 		NodeList children = ele.getChildNodes();
 		for (int i = 0; i < children.getLength(); i++) {
 			Node node = children.item(i);
@@ -1396,8 +1429,11 @@ public class BeanDefinitionParserDelegate {
 	public BeanDefinitionHolder decorateIfRequired(
 			Node node, BeanDefinitionHolder originalDef, @Nullable BeanDefinition containingBd) {
 
+		//获取自定义标签的命名空间
 		String namespaceUri = getNamespaceURI(node);
+//		对于非默认标签进行修饰
 		if (namespaceUri != null && !isDefaultNamespace(namespaceUri)) {
+//			根据命名空间找到对应的处理器
 			NamespaceHandler handler = this.readerContext.getNamespaceHandlerResolver().resolve(namespaceUri);
 			if (handler != null) {
 				BeanDefinitionHolder decorated =

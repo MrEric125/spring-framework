@@ -75,7 +75,9 @@ public class XmlBeanFactory extends DefaultListableBeanFactory {
 	 * @throws BeansException in case of loading or parsing errors
 	 */
 	public XmlBeanFactory(Resource resource, BeanFactory parentBeanFactory) throws BeansException {
+//		调用的是AbstractAutowireCapableBeanFactory的构造方法，主要功能就是忽略给定借口的自动装配功能
 		super(parentBeanFactory);
+//		在这个里面加载资源
 		this.reader.loadBeanDefinitions(resource);
 	}
 

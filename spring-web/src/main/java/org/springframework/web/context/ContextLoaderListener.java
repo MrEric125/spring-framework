@@ -20,6 +20,8 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 /**
+ * spring web 容器的引导类，如果我们是springmvc的话，一般都是需要在web.xml中配置这个引导类，
+ * 来初始化webApplicationContext的
  * Bootstrap listener to start up and shut down Spring's root {@link WebApplicationContext}.
  * Simply delegates to {@link ContextLoader} as well as to {@link ContextCleanupListener}.
  *

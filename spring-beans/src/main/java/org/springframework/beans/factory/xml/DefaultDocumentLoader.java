@@ -62,8 +62,11 @@ public class DefaultDocumentLoader implements DocumentLoader {
 
 
 	/**
-	 * Load the {@link Document} at the supplied {@link InputSource} using the standard JAXP-configured
-	 * XML parser.
+	 * Load the {@link Document} at the supplied {@link InputSource} using the standard JAXP-configured XML parser.
+	 * 通过读取的xml文件获取document
+	 * EntityResolver：的作用就是项目本身可以提供一个如何寻找DTD声明的方法，
+	 * 即有程序来实现寻找DTD声明的过程
+	 *
 	 */
 	@Override
 	public Document loadDocument(InputSource inputSource, EntityResolver entityResolver,

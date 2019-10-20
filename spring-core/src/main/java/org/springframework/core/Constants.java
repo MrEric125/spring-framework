@@ -46,7 +46,10 @@ import org.springframework.util.ReflectionUtils;
  */
 public class Constants {
 
-	/** The name of the introspected class */
+	/** The name of the introspected class. */
+	/**
+	 * 内审类的名称
+	 */
 	private final String className;
 
 	/** Map from String field name to object value */

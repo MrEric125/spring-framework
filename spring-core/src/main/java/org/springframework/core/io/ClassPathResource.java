@@ -167,6 +167,7 @@ public class ClassPathResource extends AbstractFileResolvingResource {
 	@Override
 	public InputStream getInputStream() throws IOException {
 		InputStream is;
+//		如果给定了clazz就用给定的clazz来加载资源，否则的话就用默认的classLoader来加载资源
 		if (this.clazz != null) {
 			is = this.clazz.getResourceAsStream(this.path);
 		}

@@ -36,6 +36,7 @@ import org.springframework.util.ClassUtils;
  * <p><b>Note:</b> When chaining ViewResolvers, an InternalResourceViewResolver
  * always needs to be last, as it will attempt to resolve any view name,
  * no matter whether the underlying resource actually exists.
+ * 这个类的主要作用就是在ModelAndView返回视图时候指定前后缀
  *
  * @author Juergen Hoeller
  * @since 17.02.2003

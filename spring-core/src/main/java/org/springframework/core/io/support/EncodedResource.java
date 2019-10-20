@@ -131,6 +131,7 @@ public class EncodedResource implements InputStreamSource {
 	 * Open a {@code java.io.Reader} for the specified resource, using the specified
 	 * {@link #getCharset() Charset} or {@linkplain #getEncoding() encoding}
 	 * (if any).
+	 * 使用相应的编码作为输入流的编码
 	 * @throws IOException if opening the Reader failed
 	 * @see #requiresReader()
 	 * @see #getInputStream()

@@ -35,6 +35,7 @@ import org.springframework.util.StringValueResolver;
  * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}
  * implementations.
  *
+ * aliasRegistry的简单实现
  * @author Juergen Hoeller
  * @since 2.5.2
  */

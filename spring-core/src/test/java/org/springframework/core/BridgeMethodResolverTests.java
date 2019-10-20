@@ -66,6 +66,7 @@ public class BridgeMethodResolverTests {
 
 	@Test
 	public void testFindBridgedVarargMethod() throws Exception {
+		System.out.println("test");
 		Method unbridged = MyFoo.class.getDeclaredMethod("someVarargMethod", String.class, Object[].class);
 		Method bridged = MyFoo.class.getDeclaredMethod("someVarargMethod", Serializable.class, Object[].class);
 		assertFalse(unbridged.isBridge());

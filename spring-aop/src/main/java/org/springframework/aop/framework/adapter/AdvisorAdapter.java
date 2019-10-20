@@ -31,7 +31,7 @@ import org.springframework.aop.Advisor;
  *
  * <p>There is no need for most Spring users to implement this interface;
  * do so only if you need to introduce more Advisor or Advice types to Spring.
- *
+ *适配器的一个作用就是将一个类的接口转换成客户希望的另外一个接口
  * @author Rod Johnson
  */
 public interface AdvisorAdapter {
