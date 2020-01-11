@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
@@ -34,6 +35,14 @@ public class BeanFactoryTest {
 
 		BeanFactory factory = new XmlBeanFactory(new ClassPathResource("application.xml"));
 		MyTestBean bean = factory.getBean(MyTestBean.class);
+
+	}
+
+	@Test
+	public void test2() {
+		ApplicationContext context = new AnnotationConfigApplicationContext();
+		MyTestBean myTestBean = context.getBean("myTestBean", MyTestBean.class);
+		System.out.println(myTestBean.getTestStr());
 
 	}
 }

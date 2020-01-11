@@ -28,8 +28,6 @@ public class BeanFactoryTest {
 
 	@Test
 	public void testSimpleLoad() {
-
-
 		DefaultListableBeanFactory dlbf = new DefaultListableBeanFactory();
 		loadBeanDefinition(dlbf);
 		MyTestBean bean = dlbf.getBean("myTestBean", MyTestBean.class);
@@ -45,6 +43,10 @@ public class BeanFactoryTest {
 			xdr.loadBeanDefinitions(configLocations);
 		}
 
+
+	}
+
+	public void annotationTest() {
 
 	}
 
