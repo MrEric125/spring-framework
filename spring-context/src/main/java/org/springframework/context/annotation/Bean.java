@@ -27,6 +27,7 @@ import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.core.annotation.AliasFor;
 
 /**
+ * 表示方法产生一个由Spring容器管理的bean。
  * Indicates that a method produces a bean to be managed by the Spring container.
  *
  * <h3>Overview</h3>
@@ -46,8 +47,8 @@ import org.springframework.core.annotation.AliasFor;
  * <h3>Bean Names</h3>
  *
  * <p>While a {@link #name} attribute is available, the default strategy for
- * determining the name of a bean is to use the name of the {@code @Bean} method.
- * This is convenient and intuitive, but if explicit naming is desired, the
+ * determining(决定) the name of a bean is to use the name of the {@code @Bean} method.
+ * This is convenient(方便) and intuitive, but if explicit naming is desired, the
  * {@code name} attribute (or its alias {@code value}) may be used. Also note
  * that {@code name} accepts an array of Strings, allowing for multiple names
  * (i.e. a primary bean name plus one or more aliases) for a single bean.
@@ -171,6 +172,7 @@ import org.springframework.core.annotation.AliasFor;
  *
  * <h3>Bootstrapping</h3>
  *
+ * 可以通过查看{@link Configuration} 的文档来详细了解这个类是如何通过{@link AnnotationConfigApplicationContext} 来启动的
  * <p>See the @{@link Configuration} javadoc for further details including how to bootstrap
  * the container using {@link AnnotationConfigApplicationContext} and friends.
  *
@@ -178,9 +180,12 @@ import org.springframework.core.annotation.AliasFor;
  *
  * <p>Special consideration must be taken for {@code @Bean} methods that return Spring
  * {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor BeanFactoryPostProcessor}
+ * BFPP 在容器的生命周期中是比较靠前初始化的，
  * ({@code BFPP}) types. Because {@code BFPP} objects must be instantiated very early in the
+ * BFPP会干扰诸如下面几个注解的处理过程
  * container lifecycle, they can interfere with processing of annotations such as {@code @Autowired},
  * {@code @Value}, and {@code @PostConstruct} within {@code @Configuration} classes. To avoid these
+ * 为了避免使用它的时候出现一些问题一般建议让返回值是static类型的
  * lifecycle issues, mark {@code BFPP}-returning {@code @Bean} methods as {@code static}. For example:
  *
  * <pre class="code">

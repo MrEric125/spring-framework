@@ -36,7 +36,9 @@ import org.springframework.util.Assert;
 import org.springframework.util.PatternMatchUtils;
 
 /**
+ * Bean定义扫描程序，用于检测ClassPath上的Bean候选对象，
  * A bean definition scanner that detects bean candidates on the classpath,
+ * 用给定的注册表({@code BeanFactory} or {@code ApplicationContext})注册相应的bean定义
  * registering corresponding bean definitions with a given registry ({@code BeanFactory}
  * or {@code ApplicationContext}).
  *

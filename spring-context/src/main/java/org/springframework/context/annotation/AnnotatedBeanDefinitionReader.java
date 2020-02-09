@@ -34,8 +34,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
+ * 方便的适配器，用于以编程方式注册带注释的Bean类
  * Convenient adapter for programmatic registration of annotated bean classes.
+ * 这是一个另类的{@link ClassPathBeanDefinitionScanner},
  * This is an alternative to {@link ClassPathBeanDefinitionScanner}, applying
+ * 应用注释的相同解决方案，但仅适用于显式注册的类
  * the same resolution of annotations but for explicitly registered classes only.
  *
  * @author Juergen Hoeller

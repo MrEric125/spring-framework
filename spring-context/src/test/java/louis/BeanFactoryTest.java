@@ -6,6 +6,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
@@ -13,7 +14,7 @@ import org.springframework.core.io.ClassPathResource;
  * @author Eric
  * @date create in 2019/3/17
  */
-public class BeanFactoryTest {
+public class BeanFactoryTest  {
 
 	@Test
 	public void testSimpleLoad() {
@@ -38,11 +39,19 @@ public class BeanFactoryTest {
 
 	}
 
+
+	/**
+	 * spring  applicationContext的注入过程
+	 */
+	@Bean
 	@Test
-	public void test2() {
-		ApplicationContext context = new AnnotationConfigApplicationContext();
+	public void test2()
+{
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.register(BeanConfiguration.class);
+		context.refresh();
 		MyTestBean myTestBean = context.getBean("myTestBean", MyTestBean.class);
 		System.out.println(myTestBean.getTestStr());
 
-	}
+		}
 }
