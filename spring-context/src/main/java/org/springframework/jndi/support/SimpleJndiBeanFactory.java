@@ -63,7 +63,12 @@ public class SimpleJndiBeanFactory extends JndiLocatorSupport implements BeanFac
 	/** JNDI names of resources that are known to be shareable, i.e. can be cached */
 	private final Set<String> shareableResources = new HashSet<>();
 
-	/** Cache of shareable singleton objects: bean name --> bean instance */
+
+	/**
+	 *  Cache of shareable singleton objects: bean name --> bean instance
+	 *  为什么这个地方不用concurrentHashMap(),那么就是线程不安全的
+	 *
+	 *  */
 	private final Map<String, Object> singletonObjects = new HashMap<>();
 
 	/** Cache of the types of nonshareable resources: bean name --> bean type */
@@ -206,6 +211,14 @@ public class SimpleJndiBeanFactory extends JndiLocatorSupport implements BeanFac
 	}
 
 
+	/**
+	 * JNDI维护的一套单例map,
+	 * @param name
+	 * @param requiredType
+	 * @param <T>
+	 * @return
+	 * @throws NamingException
+	 */
 	@SuppressWarnings("unchecked")
 	private <T> T doGetSingleton(String name, @Nullable Class<T> requiredType) throws NamingException {
 		synchronized (this.singletonObjects) {

@@ -16,6 +16,10 @@ import org.springframework.core.io.ClassPathResource;
  */
 public class BeanFactoryTest  {
 
+	/**
+	 * 解决三个问题
+	 *
+	 */
 	@Test
 	public void testSimpleLoad() {
 
@@ -45,13 +49,12 @@ public class BeanFactoryTest  {
 	 */
 	@Bean
 	@Test
-	public void test2()
-{
+	public void test2() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.register(BeanConfiguration.class);
 		context.refresh();
 		MyTestBean myTestBean = context.getBean("myTestBean", MyTestBean.class);
 		System.out.println(myTestBean.getTestStr());
+	}
 
-		}
 }

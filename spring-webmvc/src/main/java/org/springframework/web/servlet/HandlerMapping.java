@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.lang.Nullable;
 
 /**
+ *
+ * 该接口的实现类用来定义请求和处理器之前的映射关系，其中只定义了一个方法getHandler。
  * Interface to be implemented by objects that define a mapping between
  * requests and handler objects.
  *

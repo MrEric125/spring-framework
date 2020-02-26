@@ -444,6 +444,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	/**
 	 * Return the ResourcePatternResolver to use for resolving location patterns
 	 * into Resource instances. Default is a
+	 * 用于解析资源的类
 	 * {@link org.springframework.core.io.support.PathMatchingResourcePatternResolver},
 	 * supporting Ant-style location patterns.
 	 * <p>Can be overridden in subclasses, for extended resolution strategies,
@@ -517,6 +518,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	public void refresh() throws BeansException, IllegalStateException {
 		synchronized (this.startupShutdownMonitor) {
 			// Prepare this context for refreshing.
+
+//			为上下文的刷新做准备 顺便校验环境变量是否全部都有，此处不会加载自定义配置文件
 			prepareRefresh();
 
 			// Tell the subclass to refresh the internal bean factory.
@@ -585,7 +588,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	protected void prepareRefresh() {
 		// Switch to active.
 		this.startupDate = System.currentTimeMillis();
+//		判断这个容器是否关闭
 		this.closed.set(false);
+//		判断上下文是否处于活跃状态
 		this.active.set(true);
 
 		if (logger.isInfoEnabled()) {
@@ -593,6 +598,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		}
 
 		// Initialize any placeholder property sources in the context environment.
+//		初始化上下文环境变量到占位符中，这里主要是系统环境变量，
+//		web容器环境变量，不包含配置文件环境变量
 		initPropertySources();
 
 		// Validate that all properties marked as required are resolvable:

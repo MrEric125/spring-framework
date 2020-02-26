@@ -41,6 +41,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.ClassUtils;
 
 /**
+ * 它封装了方法某个参数的相关信息及行为，如该参数的索引，该参数所属方法实例或构造器实例，该参数的类型等。
  * Helper class that encapsulates the specification of a method parameter, i.e. a {@link Method}
  * or {@link Constructor} plus a parameter index and a nested type index for a declared generic
  * type. Useful as a specification object to pass along.

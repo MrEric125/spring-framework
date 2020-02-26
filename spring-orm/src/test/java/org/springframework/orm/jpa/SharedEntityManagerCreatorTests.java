@@ -146,9 +146,9 @@ public class SharedEntityManagerCreatorTests {
 		given(targetEm.isOpen()).willReturn(true);
 
 		EntityManager em = SharedEntityManagerCreator.createSharedEntityManager(emf);
-		em.createQuery("x").getResultStream();
+		em.createQuery("x").getResultList();
 
-		verify(query).getResultStream();
+		verify(query).getResultList();
 		verify(targetEm).close();
 	}
 

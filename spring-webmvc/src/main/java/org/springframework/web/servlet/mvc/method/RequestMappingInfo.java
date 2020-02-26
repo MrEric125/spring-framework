@@ -36,6 +36,9 @@ import org.springframework.web.servlet.mvc.condition.RequestMethodsRequestCondit
 import org.springframework.web.util.UrlPathHelper;
 
 /**
+ *
+ * 这个类是对请求映射的一个抽象，它包含了请求路径，请求方法，请求头信息，其实可以看做是一个@RequestMapping的一个对应类
+ *
  * A {@link RequestCondition} that consists of the following other conditions:
  * <ol>
  * <li>{@link PatternsRequestCondition}

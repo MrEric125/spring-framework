@@ -205,6 +205,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	public static final String FLASH_MAP_MANAGER_BEAN_NAME = "flashMapManager";
 
 	/**
+	 * 用于存储web上下文的属性
 	 * Request attribute to hold the current web application context.
 	 * Otherwise only the global web app context is obtainable by tags etc.
 	 * @see org.springframework.web.servlet.support.RequestContextUtils#findWebApplicationContext
@@ -212,6 +213,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	public static final String WEB_APPLICATION_CONTEXT_ATTRIBUTE = DispatcherServlet.class.getName() + ".CONTEXT";
 
 	/**
+	 *
 	 * Request attribute to hold the current LocaleResolver, retrievable by views.
 	 * @see org.springframework.web.servlet.support.RequestContextUtils#getLocaleResolver
 	 */
@@ -961,6 +963,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				multipartRequestParsed = (processedRequest != request);
 
 				// Determine handler for the current request.
+//				确定当前请求的处理程序   ①
 				mappedHandler = getHandler(processedRequest);
 				if (mappedHandler == null) {
 					noHandlerFound(processedRequest, response);
@@ -968,6 +971,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 
 				// Determine handler adapter for the current request.
+//				确定当前请求的处理程序适配器 ②  其中 ①和②的地方时项目中@requestMapping映射很重要的地方
 				HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());
 
 				// Process last-modified header, if supported by the handler.
@@ -988,6 +992,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 
 				// Actually invoke the handler.
+			//	 dispatchServlet中实际调用业务代码的地方
 				mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
 
 				if (asyncManager.isConcurrentHandlingStarted()) {

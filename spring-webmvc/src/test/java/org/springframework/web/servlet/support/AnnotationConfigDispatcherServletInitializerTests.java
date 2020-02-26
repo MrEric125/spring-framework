@@ -47,7 +47,7 @@ import static org.junit.Assert.*;
 
 /**
  * Test case for {@link AbstractAnnotationConfigDispatcherServletInitializer}.
- *
+ *容器注册相关测试
  * @author Arjen Poutsma
  */
 public class AnnotationConfigDispatcherServletInitializerTests {

@@ -47,6 +47,9 @@ import org.springframework.web.servlet.mvc.condition.NameValueExpression;
 import org.springframework.web.util.WebUtils;
 
 /**
+ *
+ * 这个是AbstractHandlerMethodMapping的实现类，他维护了一个RequestMappingInfo和HandlerMethod的Map属性
+ *
  * Abstract base class for classes for which {@link RequestMappingInfo} defines
  * the mapping between a request and a handler method.
  *

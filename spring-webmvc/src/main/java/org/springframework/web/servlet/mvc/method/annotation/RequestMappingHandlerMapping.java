@@ -44,6 +44,10 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
 
 /**
+ * 这个是RequestMappingInfoHandlerMapping的子类，
+ * 它将@RequestMapping注解转化为RequestMappingInfo实例，
+ * 并为父类使用。也就是我们处理@RequestMapping的终点。
+ *
  * Creates {@link RequestMappingInfo} instances from type and method-level
  * {@link RequestMapping @RequestMapping} annotations in
  * {@link Controller @Controller} classes.

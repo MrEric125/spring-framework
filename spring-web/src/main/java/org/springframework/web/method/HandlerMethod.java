@@ -35,6 +35,9 @@ import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
+ *
+ * 这个类封装了处理器实例(ControllerBean 和处理方法实例（Method）以及方法参数数组（MethodParameter[]）)
+ *
  * Encapsulates information about a handler method consisting of a
  * {@linkplain #getMethod() method} and a {@linkplain #getBean() bean}.
  * Provides convenient access to method parameters, the method return value,

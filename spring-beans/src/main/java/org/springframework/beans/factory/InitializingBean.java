@@ -17,6 +17,11 @@
 package org.springframework.beans.factory;
 
 /**
+ *
+ * 这个接口定义了其实现Bean在容器完成属性设置后可以执行自定义初始化操作，
+ * 我们的AbstractHandlerMethodMapping便实现了这个接口，
+ * 并且定义了一组自定义操作，就是用来检测处理我们的@RequestMapping注解。
+ *
  * Interface to be implemented by beans that need to react once all their properties
  * have been set by a {@link BeanFactory}: e.g. to perform custom initialization,
  * or merely to check that all mandatory properties have been set.

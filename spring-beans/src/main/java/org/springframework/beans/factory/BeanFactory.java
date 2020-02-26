@@ -21,13 +21,16 @@ import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
 
 /**
+ * 这是一个根接口对于获取Spring 容器，
  * The root interface for accessing a Spring bean container.
  * This is the basic client view of a bean container;
  * further interfaces such as {@link ListableBeanFactory} and
  * {@link org.springframework.beans.factory.config.ConfigurableBeanFactory}
  * are available for specific purposes.
  *
+ * 此接口由包含许多Bean定义的对象实现，这些对象都是由唯一的字符串识别
  * <p>This interface is implemented by objects that hold a number of bean definitions,
+ *
  * each uniquely identified by a String name. Depending on the bean definition,
  * the factory will return either an independent instance of a contained object
  * (the Prototype design pattern), or a single shared instance (a superior
@@ -131,6 +134,13 @@ public interface BeanFactory {
 	 * returned objects in the case of Singleton beans.
 	 * <p>Translates aliases back to the corresponding canonical bean name.
 	 * Will ask the parent factory if the bean cannot be found in this factory instance.
+	 *
+	 *实现方式:
+	 * {@link org.springframework.beans.factory.support.AbstractBeanFactory }
+	 * {@link org.springframework.beans.factory.support.StaticListableBeanFactory }
+	 * {@link org.springframework.context.support.AbstractApplicationContext}
+	 * AbstractApplicationContext调用的是AbstractBeanFactory的getBean(name)
+	 * {@link org.springframework.jndi.support.SimpleJndiBeanFactory}
 	 * @param name the name of the bean to retrieve
 	 * @return an instance of the bean
 	 * @throws NoSuchBeanDefinitionException if there is no bean with the specified name
