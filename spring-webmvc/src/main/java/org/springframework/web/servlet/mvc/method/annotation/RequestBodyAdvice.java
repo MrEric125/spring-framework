@@ -25,11 +25,17 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.lang.Nullable;
 
 /**
+ * 允许在读取请求的主体并将其转换为对象之前对请求进行自定义，
+ * 并且还允许在将结果对象传递给控制器​​方法之前对其进行处理
+ *
  * Allows customizing the request before its body is read and converted into an
  * Object and also allows for processing of the resulting Object before it is
  * passed into a controller method as an {@code @RequestBody} or an
  * {@code HttpEntity} method argument.
  *
+ *
+ * 实现了这个类的可以直接被注册到{@code RequestMappingHandlerAdapter} 或者
+ * 更可能是直接使用@code @ControllerAdvice}来实现被自动检测到
  * <p>Implementations of this contract may be registered directly with the
  * {@code RequestMappingHandlerAdapter} or more likely annotated with
  * {@code @ControllerAdvice} in which case they are auto-detected.

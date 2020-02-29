@@ -34,6 +34,7 @@ import org.springframework.web.context.ServletConfigAware;
 import org.springframework.web.context.ServletContextAware;
 
 /**
+ * 一般不适用与生产环境 是 WebApplicationContext的实现类
  * Static {@link org.springframework.web.context.WebApplicationContext}
  * implementation for testing. Not intended for use in production applications.
  *

@@ -783,6 +783,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 		checkRequest(request);
 
 		// Execute invokeHandlerMethod in synchronized block if required.
+//		以下流程其实就是调用了invokeHandlerMethod,但是提前判断了session公用的问题
 		if (this.synchronizeOnSession) {
 			HttpSession session = request.getSession(false);
 			if (session != null) {
@@ -793,6 +794,7 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 			}
 			else {
 				// No HttpSession available -> no mutex necessary
+//				没有httpSession
 				mav = invokeHandlerMethod(request, response, handlerMethod);
 			}
 		}
@@ -859,9 +861,12 @@ public class RequestMappingHandlerAdapter extends AbstractHandlerMethodAdapter
 			ModelFactory modelFactory = getModelFactory(handlerMethod, binderFactory);
 
 			ServletInvocableHandlerMethod invocableMethod = createInvocableHandlerMethod(handlerMethod);
+//			解析参数
 			if (this.argumentResolvers != null) {
+
 				invocableMethod.setHandlerMethodArgumentResolvers(this.argumentResolvers);
 			}
+//			处理返回值
 			if (this.returnValueHandlers != null) {
 				invocableMethod.setHandlerMethodReturnValueHandlers(this.returnValueHandlers);
 			}

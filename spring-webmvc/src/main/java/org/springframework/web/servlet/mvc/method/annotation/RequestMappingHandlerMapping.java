@@ -48,6 +48,8 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMappi
  * 它将@RequestMapping注解转化为RequestMappingInfo实例，
  * 并为父类使用。也就是我们处理@RequestMapping的终点。
  *
+ * 这个类一般会在系统初始化的时候就给实例掉
+ *
  * Creates {@link RequestMappingInfo} instances from type and method-level
  * {@link RequestMapping @RequestMapping} annotations in
  * {@link Controller @Controller} classes.

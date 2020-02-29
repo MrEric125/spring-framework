@@ -318,7 +318,7 @@ public class RequestMappingHandlerAdapterTests {
 		}
 
 		public String handle() {
-			return null;
+			return "test——louis";
 		}
 
 		public ResponseEntity<Map<String, String>> handleWithResponseEntity() {

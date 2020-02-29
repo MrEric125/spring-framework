@@ -288,7 +288,9 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 	}
 
 	/**
+	 * 查找最适合的handler method 对于当前的请求，
 	 * Look up the best-matching handler method for the current request.
+	 * 如果找到多个匹配，则使用最佳匹配
 	 * If multiple matches are found, the best match is selected.
 	 * @param exchange the current exchange
 	 * @return the best-matching handler method, or {@code null} if no match
@@ -330,6 +332,7 @@ public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMap
 
 	private void addMatchingMappings(Collection<T> mappings, List<Match> matches, ServerWebExchange exchange) {
 		for (T mapping : mappings) {
+//			找到匹配的RequestMappingInfo
 			T match = getMatchingMapping(mapping, exchange);
 			if (match != null) {
 				matches.add(new Match(match, this.mappingRegistry.getMappings().get(mapping)));
