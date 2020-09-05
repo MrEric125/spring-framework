@@ -43,18 +43,18 @@ public class BeanFactoryTest  {
 
 	}
 
-
 	/**
 	 * spring  applicationContext的注入过程
 	 */
-	@Bean
 	@Test
 	public void test2() {
+//		AnnotationConfigApplicationContext 创建流程
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.register(BeanConfiguration.class);
 		context.refresh();
-		MyTestBean myTestBean = context.getBean("myTestBean", MyTestBean.class);
-		System.out.println(myTestBean.getTestStr());
-	}
+//		MyTestBean myTestBean = context.getBean("myTestBean", MyTestBean.class);
+//		myTestBean.test();
 
+//		System.out.println(myTestBean.getTestStr());
+	}
 }
