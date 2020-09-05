@@ -10,10 +10,10 @@
 	</Appenders>
 	<Loggers>
 		<Logger name="org.springframework.core" level="info" />
-		<Logger name="org.springframework.core.convert" level="warn" />
-		<Logger name="org.springframework.core.GenericTypeResolver" level="warn" />
-		<Logger name="org.springframework.util" level="warn" />
-		<Root level="error">
+		<Logger name="org.springframework.core.convert" level="debug" />
+		<Logger name="org.springframework.core.GenericTypeResolver" level="debug" />
+		<Logger name="org.springframework.util" level="debug" />
+		<Root level="debug">
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="File" />
 		</Root>

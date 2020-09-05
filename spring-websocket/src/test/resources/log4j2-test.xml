@@ -9,10 +9,10 @@
 		</File>
 	</Appenders>
 	<Loggers>
-		<Logger name="org.springframework.web" level="warn" />
-		<Logger name="org.springframework.web.socket" level="warn" />
-		<Logger name="org.springframework.messaging" level="warn" />
-		<Root level="error">
+		<Logger name="org.springframework.web" level="debug" />
+		<Logger name="org.springframework.web.socket" level="debug" />
+		<Logger name="org.springframework.messaging" level="debug" />
+		<Root level="debug">
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="File" />
 		</Root>

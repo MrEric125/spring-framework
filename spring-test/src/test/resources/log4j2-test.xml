@@ -10,14 +10,14 @@
 	</Appenders>
 	<Loggers>
 		<Logger name="org.junit.platform" level="info" />
-		<Logger name="org.springframework.test.context" level="warn" />
-		<Logger name="org.springframework.test.context.TestContext" level="warn" />
-		<Logger name="org.springframework.test.context.TestContextManager" level="warn" />
-		<Logger name="org.springframework.test.context.ContextLoaderUtils" level="warn" />
-		<Logger name="org.springframework.test.context.cache" level="warn" />
-		<Logger name="org.springframework.test.context.junit4.rules" level="warn" />
-		<Logger name="org.springframework.test.context.transaction.TransactionalTestExecutionListener" level="warn" />
-		<Logger name="org.springframework.test.context.web" level="warn" />
+		<Logger name="org.springframework.test.context" level="debug" />
+		<Logger name="org.springframework.test.context.TestContext" level="debug" />
+		<Logger name="org.springframework.test.context.TestContextManager" level="debug" />
+		<Logger name="org.springframework.test.context.ContextLoaderUtils" level="debug" />
+		<Logger name="org.springframework.test.context.cache" level="debug" />
+		<Logger name="org.springframework.test.context.junit4.rules" level="debug" />
+		<Logger name="org.springframework.test.context.transaction.TransactionalTestExecutionListener" level="debug" />
+		<Logger name="org.springframework.test.context.web" level="debug" />
 		<!-- The following must be kept at DEBUG in order to test SPR-14363. -->
 		<Logger name="org.springframework.test.util" level="debug" />
 <!--
@@ -25,10 +25,10 @@
 		<Logger name="org.springframework.test.context.support.DelegatingSmartContextLoader" level="info" />
 		<Logger name="org.springframework.test.context.support.AbstractGenericContextLoader" level="info" />
 		<Logger name="org.springframework.test.context.support.AnnotationConfigContextLoader" level="info" />
-		<Logger name="org.springframework.beans" level="warn" />
+		<Logger name="org.springframework.beans" level="debug" />
 		<Logger name="org.springframework.test.web.servlet.result" level="debug" />
 -->
-		<Root level="error">
+		<Root level="debug">
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="File" />
 		</Root>

@@ -6,9 +6,9 @@
 		</Console>
 	</Appenders>
 	<Loggers>
-		<Logger name="org.springframework.web.servlet" level="warn" />
-		<Logger name="org.springframework.convert" level="warn" />
-		<Root level="error">
+		<Logger name="org.springframework.web.servlet" level="debug" />
+		<Logger name="org.springframework.convert" level="debug" />
+		<Root level="debug">
 			<AppenderRef ref="Console" />
 		</Root>
 	</Loggers>

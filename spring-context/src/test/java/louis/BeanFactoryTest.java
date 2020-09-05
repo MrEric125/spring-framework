@@ -52,7 +52,7 @@ public class BeanFactoryTest  {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.register(BeanConfiguration.class);
 		context.refresh();
-//		MyTestBean myTestBean = context.getBean("myTestBean", MyTestBean.class);
+		MyTestBean myTestBean = context.getBean("myTestBean", MyTestBean.class);
 //		myTestBean.test();
 
 //		System.out.println(myTestBean.getTestStr());
