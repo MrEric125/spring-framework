@@ -34,6 +34,9 @@ public class AnnotationPointcutTests {
 	private AnnotatedTestBean testBean;
 
 
+
+
+
 	@Before
 	public void setup() {
 		ClassPathXmlApplicationContext ctx =

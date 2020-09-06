@@ -6,6 +6,8 @@ package louis;
  */
 public class MyTestBean {
 
+	private String parent;
+
 	private String testStr = "testStr";
 
 	public String getTestStr() {

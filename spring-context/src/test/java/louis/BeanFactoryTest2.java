@@ -10,11 +10,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author Eric
  * @date create in 2019/3/17
  */
-public class BeanFactoryTest  {
+public class BeanFactoryTest2  {
 
 	/**
 	 * 解决三个问题
