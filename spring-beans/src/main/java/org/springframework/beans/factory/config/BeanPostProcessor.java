@@ -39,6 +39,7 @@ import org.springframework.lang.Nullable;
  * @see DestructionAwareBeanPostProcessor
  * @see ConfigurableBeanFactory#addBeanPostProcessor
  * @see BeanFactoryPostProcessor
+ * todo 这个接口的作用什么呢？
  */
 public interface BeanPostProcessor {
 
