@@ -6,8 +6,8 @@
 		</Console>
 	</Appenders>
 	<Loggers>
-		<Logger name="org.springframework.jms" level="warn" />
-		<Root level="error">
+		<Logger name="org.springframework.jms" level="debug" />
+		<Root level="debug">
 			<AppenderRef ref="Console" />
 		</Root>
 	</Loggers>
