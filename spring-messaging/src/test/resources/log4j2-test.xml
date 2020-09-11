@@ -6,7 +6,7 @@
 		</Console>
 	</Appenders>
 	<Loggers>
-		<Logger name="org.springframework.messaging" level="warn" />
+		<Logger name="org.springframework.messaging" level="debug" />
 		<Logger name="org.apache.activemq" level="info" />
 		<Logger name="reactor" level="info" />
 		<Logger name="io.netty" level="info" />
@@ -14,7 +14,7 @@
 <!--
 		<Logger name="org.springframework.messaging.simp.stomp" level="trace" />
 -->
-		<Root level="error">
+		<Root level="debug">
 			<AppenderRef ref="Console" />
 		</Root>
 	</Loggers>
