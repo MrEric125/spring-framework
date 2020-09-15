@@ -52,17 +52,30 @@ import org.springframework.util.Assert;
  */
 public class AnnotationConfigApplicationContext extends GenericApplicationContext implements AnnotationConfigRegistry {
 
+
+	/**
+	 * 真正注册{@link #register(Class[])}的时候其实调用的就是这个reader来注册bean的，
+	 * 但是这个reader内部的注册器又是{@link AnnotationConfigApplicationContext}它本身
+	 * (毕竟实现了{@link org.springframework.beans.factory.support.BeanDefinitionRegistry}，这里有点绕)，
+	 */
 	private final AnnotatedBeanDefinitionReader reader;
 
+	/**
+	 * 这个scanner就是当扫描某个包的时候调用的，实现方式和上面的reader差不多
+	 */
 	private final ClassPathBeanDefinitionScanner scanner;
 
 
 	/**
 	 * Create a new AnnotationConfigApplicationContext that needs to be populated
 	 * through {@link #register} calls and then manually {@linkplain #refresh refreshed}.
+	 * 首先会实例化各个实例变量，以及父类实例变量
 	 */
 	public AnnotationConfigApplicationContext() {
+
+		//创建对应reader,以及将内部的bean给注册起来()，
 		this.reader = new AnnotatedBeanDefinitionReader(this);
+//		创建对应scanner 以及创建内部的bean给创建起来
 		this.scanner = new ClassPathBeanDefinitionScanner(this);
 	}
 

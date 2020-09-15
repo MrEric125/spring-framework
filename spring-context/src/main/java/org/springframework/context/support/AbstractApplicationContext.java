@@ -123,6 +123,7 @@ import org.springframework.util.ReflectionUtils;
  * @see org.springframework.context.event.ApplicationEventMulticaster
  * @see org.springframework.context.ApplicationListener
  * @see org.springframework.context.MessageSource
+ * @see ResourceLoader
  */
 public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		implements ConfigurableApplicationContext {
@@ -154,6 +155,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	static {
 		// Eagerly load the ContextClosedEvent class to avoid weird classloader issues
 		// on application shutdown in WebLogic 8.1. (Reported by Dustin Woods.)
+		//首先加载这个对象，避免后期出现一些奇怪的问题，
 		ContextClosedEvent.class.getName();
 	}
 
@@ -528,6 +530,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				postProcessBeanFactory(beanFactory);
 
 				// Invoke factory processors registered as beans in the context.
+				//我们配置类中很多通过@Bean注解来标注的对象都是在这里放到beanFactory中去的
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.
@@ -1380,13 +1383,16 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * Subclasses must implement this method to release their internal bean factory.
 	 * This method gets invoked by {@link #close()} after all other shutdown work.
 	 * <p>Should never throw an exception but rather log shutdown failures.
+	 * 通过这个BeanFactory来释放内部beanFactory,交给子类来实现
 	 */
 	protected abstract void closeBeanFactory();
 
 	/**
 	 * Subclasses must return their internal bean factory here. They should implement the
 	 * lookup efficiently, so that it can be called repeatedly without a performance penalty.
+	 * 可以重复调用而不影响性能，
 	 * <p>Note: Subclasses should check whether the context is still active before
+	 * 需要注意的是，子类需要检查上下文是否依然active在返回内部beanFactory的时候，这里的internal factory 一般是指DefaultListableBeanFactory
 	 * returning the internal bean factory. The internal factory should generally be
 	 * considered unavailable once the context has been closed.
 	 * @return this application context's internal bean factory (never {@code null})

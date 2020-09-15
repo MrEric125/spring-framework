@@ -51,6 +51,7 @@ import org.springframework.util.StringUtils;
  * @author Ramnivas Laddad
  * @author Juergen Hoeller
  * @since 2.5
+ * 这个类主要用于注解方式，如果不是注解其实作用很小
  */
 public class ComponentScanBeanDefinitionParser implements BeanDefinitionParser {
 

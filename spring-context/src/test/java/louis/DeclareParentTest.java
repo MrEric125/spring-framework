@@ -13,11 +13,10 @@ public class DeclareParentTest {
 	@Test
 	public void declareParentTest() {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("louis");
 		context.register(AopConfig.class);
 		context.refresh();
 		Person bean = context.getBean(Person.class);
-		Skill skill = (Skill) bean;
-		skill.getSkill("张三");
 		bean.sayIdentification();
 	}
 

@@ -914,6 +914,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 
 		BeanDefinition existingDefinition = this.beanDefinitionMap.get(beanName);
 		if (existingDefinition != null) {
+			//如果这个BeanDefinition已经存在了，并且这个BeanDefinition还不予许覆盖，那当然会报错，
 			if (!isAllowBeanDefinitionOverriding()) {
 				throw new BeanDefinitionOverrideException(beanName, beanDefinition, existingDefinition);
 			}
@@ -961,7 +962,7 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
 			}
 			this.frozenBeanDefinitionNames = null;
 		}
-
+		//如果我们从beanDefinitionMap中取到的BeanDefinition已经存在并且在单例map中叶也已经存在是不是我们也得把单例map中的值给刷一下
 		if (existingDefinition != null || containsSingleton(beanName)) {
 			resetBeanDefinition(beanName);
 		}

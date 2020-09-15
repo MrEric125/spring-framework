@@ -10,9 +10,9 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * @author lj125
  * @since 2020/9/8 16:03
  */
-@EnableAspectJAutoProxy
+//@EnableAspectJAutoProxy
 @Configuration
-@Aspect
+//@Aspect
 public class AopConfig {
 
 

@@ -113,6 +113,7 @@ class ConfigurationClassBeanDefinitionReader {
 	/**
 	 * Read {@code configurationModel}, registering bean definitions
 	 * with the registry based on its contents.
+	 * 加载配置类中的{@link Bean} 见 {@link #loadBeanDefinitionsForBeanMethod}
 	 */
 	public void loadBeanDefinitions(Set<ConfigurationClass> configurationModel) {
 		TrackedConditionEvaluator trackedConditionEvaluator = new TrackedConditionEvaluator();
@@ -140,6 +141,7 @@ class ConfigurationClassBeanDefinitionReader {
 		if (configClass.isImported()) {
 			registerBeanDefinitionForImportedConfigurationClass(configClass);
 		}
+		//兜兜转转最后再这里将@Configuration中的@Bean注册到registry中的BeanFactory中去
 		for (BeanMethod beanMethod : configClass.getBeanMethods()) {
 			loadBeanDefinitionsForBeanMethod(beanMethod);
 		}

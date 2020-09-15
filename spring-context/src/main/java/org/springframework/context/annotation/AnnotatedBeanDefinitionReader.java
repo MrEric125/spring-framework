@@ -67,6 +67,7 @@ public class AnnotatedBeanDefinitionReader {
 	 * @see #setEnvironment(Environment)
 	 */
 	public AnnotatedBeanDefinitionReader(BeanDefinitionRegistry registry) {
+//		这里其实还没有开始实例化AnnotatedBeanDefinitionReader，只是需要先拿到相关环境数据
 		this(registry, getOrCreateEnvironment(registry));
 	}
 
@@ -84,6 +85,8 @@ public class AnnotatedBeanDefinitionReader {
 		Assert.notNull(environment, "Environment must not be null");
 		this.registry = registry;
 		this.conditionEvaluator = new ConditionEvaluator(registry, environment, null);
+//		这一步之前，其实registry中的BeanFactory其实还什么都没有，在这一步首先会将需要的一个注解配置处理器注册进来
+//		那么问题来了，为什么要在这里注册，这些配置处理器有什么作用？为什么在这里注册
 		AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);
 	}
 
